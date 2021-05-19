@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/Register.css">
+</head>
+<body>
+    <h1>Cadastro dos Usuários</h1>
+    <form action="Save-student" method="post" onsubmit ="validate(event)">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome">
+            <label for="idade">Idade</label>
+            <input type="text" id="idade" name="idade">
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereço" name="endereco">
+            <label for="cpf">CPF</label>
+            <input type="text" id="CPF" name="cpf" placeholder="Digite apenas os numeros">
+            <label for="rg">RG</label>
+            <input type="text" id="RG" name="rg" placeholder="Digite apenas os numeros">
+            <button type="submit">Cadastrar Aluno</button>
+    </form>
+
+    <a href="/" class="seta"><img src="/img/Arrow_Left.png"></a>
+
+    <script src="/scripts/register.js"></script>
+</body>
+</html>

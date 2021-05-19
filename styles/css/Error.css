@@ -1,0 +1,11 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+}
+
+h1{
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+}

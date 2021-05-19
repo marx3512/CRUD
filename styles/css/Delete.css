@@ -1,0 +1,50 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+img{
+    padding-top: 15px;
+    width: 65px;
+    height: 65px;
+}
+input{
+    width: 500px;
+    height: 30px;
+    font-size: 1.5em;
+}
+h1{
+    font-size: 3em;
+    position: absolute;
+    left: 400px;
+}
+
+form button{
+    position: relative;
+    font-size: 1.1em;
+    top: 130px;
+    left: 560px;
+    width: 150px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.CampoDeTexto{
+    position: absolute;
+    top: 150px;
+    left: 380px;
+}
+
+.CampoDeTexto button{
+    position: relative;
+    top: -5px;
+    border-radius: 8px;
+    font-size: 1.0em;
+    height: 40px;
+}
+.Caixa{
+    position: relative;
+    top: 100px;
+    left: 291.5px;
+}
+
