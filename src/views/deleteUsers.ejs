@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusão de Cadastros</title>
+    <link rel="stylesheet" href="/css/Delete.css">
+</head>
+<body>
+    <h1>Exclusão de Cadastros</h1>
+
+    <a href="/" class="seta"><img src="/img/Arrow_Left.png"></a>
+
+    <div class="CampoDeTexto">
+        <form action="TakeStudent" method="get">
+            <input type="text" id="campo" name="campo" placeholder="Digite um CPF, RG ou ID">
+            <button id="busca" type="submit">Busca</button>
+        </form>
+        <%- include('include/messages')%>
+    </div>
+
+    <div class="Caixa">
+        <h2 id="id">Id: </h2>
+        <h2 id="nome">Nome: </h2>
+        <h2 id="idade">Idade: </h2>
+        <h2 id="endereco">Endereço: </h2>
+        <h2 id="cpf">CPF: </h2>
+        <h2 id="rg">RG: </h2>
+        <% if(student) { %>
+            <% student.forEach(stu => { %>
+                <h2 class="id"><%= stu.id%></h2>
+                <h2 class="nome"><%= stu.nome%></h2>
+                <h2 class="idade"><%= stu.idade%></h2>
+                <h2 class="endereco"><%= stu.endereco%></h2>
+                <h2 class="cpf"><%= stu.cpf%></h2>
+                <h2 class="rg"><%= stu.rg%></h2>
+            <% }) %>
+        <% } %>
+    </div>
+
+    <% if(student) { %>
+        <% student.forEach(stu => { %>
+            <a href="/Delete-student/<%= stu.id%>"><button id="excluir">Excluir Usuario</button></a>
+        <% }) %>
+    <% } %>
+ 
+</body>
+</html>

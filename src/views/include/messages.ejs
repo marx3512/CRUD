@@ -1,0 +1,19 @@
+<% if (errors) { %>
+    <div class="MessagesFail">
+        <% errors.forEach((error) => {%>
+            <%= error %><br>
+        <% }); %>
+    </div>
+<% } %>
+
+<% if (success) { %>
+    <div class="MessagesSuccess">
+        <%= success%>
+    </div>
+<% } %>
+
+<% if (fails) { %>
+    <div class="MessagesFail">
+        <%= fails%>
+    </div>
+<% } %>

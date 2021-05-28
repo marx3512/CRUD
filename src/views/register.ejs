@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Cadastro dos Usuários</h1>
+    <%- include('include/messages')%>
     <form action="Save-student" method="post" onsubmit ="validate(event)">
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome">
@@ -24,7 +25,5 @@
     </form>
 
     <a href="/" class="seta"><img src="/img/Arrow_Left.png"></a>
-
-    <script src="/scripts/register.js"></script>
 </body>
 </html>

@@ -13,8 +13,12 @@
     <a href="/" class="seta"><img src="/img/Arrow_Left.png"></a>
 
     <div class="CampoDeTexto">
-        <input type="text" id="campo">
-        <button id="busca">Busca</button>
+        <form action="TakeStudents" method="get" onsubmit="validate()">
+            <input type="text" id="campo" name="campo" placeholder="Busca">
+            <input type="text" id="variavel" name="variavel" hidden>
+            <button type="submit" id="busca">Buscar</button>
+        </form>
+        <%- include('include/messages')%>
         <select id="opcao">
             <option value="id">ID</option>
             <option value="nome">Nome</option>
@@ -33,6 +37,16 @@
         <h2>Endereço</h2>
         <h2>CPF</h2>
         <h2>RG</h2>
+        <% if (allStudents) { %>
+            <% allStudents.forEach(student => { %>
+                <h2><%= student.id%></h2>
+                <h2><%= student.nome%></h2>
+                <h2><%= student.idade%></h2>
+                <h2><%= student.endereco%></h2>
+                <h2><%= student.cpf%></h2>
+                <h2><%= student.rg%></h2>
+            <% }) %>
+        <% } %>
     </div>
 
     

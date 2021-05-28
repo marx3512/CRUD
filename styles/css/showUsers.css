@@ -55,7 +55,7 @@ h1{
     font-size: 1.5em;
     width: 150px;
     height: 55px;
-    left: 100px;
+    left: 750px;
 }
 
 .CampoDeTexto button{
@@ -67,4 +67,11 @@ h1{
 
 .Caixa{
     background-color: chocolate;
+}
+
+.MessagesFail{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 1.1em;
+    display: flex;
+    justify-content: center;
 }

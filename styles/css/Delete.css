@@ -17,7 +17,7 @@ h1{
     left: 400px;
 }
 
-form button{
+a button{
     position: relative;
     font-size: 1.1em;
     top: 130px;
@@ -25,8 +25,6 @@ form button{
     width: 150px;
     height: 50px;
     border-radius: 8px;
-    cursor: not-allowed;
-    opacity: 0.6;
 }
 
 .CampoDeTexto{
@@ -43,8 +41,66 @@ form button{
     height: 40px;
 }
 .Caixa{
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    grid-template-columns: 0.1fr 1fr;
+    
     position: relative;
     top: 100px;
     left: 291.5px;
 }
 
+.MessagesFail{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 1.1em;
+    display: flex;
+    justify-content: center;
+}
+
+.MessagesSuccess{
+    background-color: rgba(81, 246, 210, 0.3);
+    border-radius: 1.1em;
+    display: flex;
+    justify-content: center;
+}
+
+.id{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.nome{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+.idade{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+.endereco{
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+}
+.cpf{
+    grid-column: 2 / 3;
+    grid-row: 5 / 6;
+}
+
+#nome{
+    grid-column: 1 / 2;
+}
+
+#idade{
+    grid-column: 1 / 2;
+}
+
+#endereco{
+    grid-column: 1 / 2;
+}
+
+#cpf{
+    grid-column: 1 / 2;
+}
+
+#rg{
+    grid-column: 1 / 2;
+}

@@ -45,3 +45,17 @@ form button{
     border-radius: 8px;
     font-size: 1.0em;
 }
+
+.MessagesFail{
+    background-color: rgba(255, 0, 0, 0.3);
+    border-radius: 1.1em;
+    display: flex;
+    justify-content: center;
+}
+
+.MessagesSuccess{
+    background-color: rgba(81, 246, 210, 0.3);
+    border-radius: 1.1em;
+    display: flex;
+    justify-content: center;
+}

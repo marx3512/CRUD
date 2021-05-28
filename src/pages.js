@@ -1,57 +1,88 @@
 const Database = require('./database/db');
-const saveStudentMethod = require('./database/saveStudent');
-const deleteStudentMethod = require('./database/deleteStudent')
+const ModelSaveStudent = require('./model/SaveStudentModel');
+const ModelShowStudents = require('./model/showStudentModel');
+const ModelShowOnlyStudent = require('./model/ShowOnlyOneStudent');
+const ModelDeleteStudent = require('./model/DeleteStudentModel');
 
 module.exports = {
     
     index(req,res){
-        return res.sendFile(__dirname + '/views/index.html')
+        return res.render('index');
     },
 
     register(req,res){
-        return res.sendFile(__dirname + '/views/register.html')
+        return res.render('register');
     },
 
     showUsers(req,res){
-        return res.sendFile(__dirname + '/views/showUsers.html')
+        const allStudents = [];
+        return res.render('showUsers', { allStudents });
     },
 
     deleteUsers(req,res){
-        return res.sendFile(__dirname + '/views/deleteUsers.html')
-        
+        const student = [];
+        return res.render('deleteUsers', { student });
     },
 
     async takeStudents(req,res){
         try {
-            const db = await Database
-            const students = await db.all("SELECT * FROM students")
-            console.log(students)
-            return res.json(students)
+            const fields = new ModelShowStudents(req.query);
+            await fields.show();
+            
+            if(fields.errors.length > 0){
+                req.flash('errors', fields.errors);
+                return res.redirect('back');
+            }
+            
+            const allStudents = await fields.show();
+            
+            if(allStudents.length == 0){
+                req.flash('fails', 'Não foi encontrado nenhum estudante com esse dado inserido');
+                return res.redirect('back');
+            }
+            
+            return res.render('showUsers', { allStudents });
         } catch (error) {
-            console.log('Errrorrr')
+            console.log(error)
+            return res.send('Error no banco de dados')
+        }
+    },
+
+    async takeStudent(req,res){
+        try {
+            const fields = new ModelShowOnlyStudent(req.query);
+            const student = await fields.show();
+
+            if(fields.errors.length > 0){
+                req.flash('errors', fields.errors);
+                return res.redirect('back');
+            }
+
+            if(student.length == 0){
+                req.flash('fails', 'Não foi encontrado nenhum estudante com esse dado inserido');
+                return res.redirect('back');
+            }
+
+            return res.render('deleteUsers', { student });
+        } catch (error) {
+            console.log(error)
             return res.send('Error no banco de dados')
         }
     },
 
     async saveStudent(req,res){
-        const fields = req.body
-
-        if(Object.values(fields).includes('')){
-            return res.send('Todos os campos devem ser preenchidos')
-        }
-
         try {
-            const db = await Database
-            await saveStudentMethod(db,{
-                nome: fields.nome,
-                idade: fields.idade,
-                endereco: fields.endereco,
-                cpf: fields.cpf,
-                rg: fields.rg,
-            })
-            
-            //redirecionamento
-            return res.redirect('/Register')
+            const db = await Database;
+            const allStudents = await db.all("SELECT * FROM students");
+            const fields = new ModelSaveStudent(req.body);
+            await fields.register(allStudents);
+
+            if(fields.errors.length > 0){
+                req.flash('errors', fields.errors);
+                return res.redirect('back');
+            }
+            req.flash('success', 'Seu aluno foi cadastrado com sucesso');
+            return res.redirect('back');
         } catch (error) {
             console.log(error)
             return res.send('Aconteceu um error no banco de dados')
@@ -60,25 +91,18 @@ module.exports = {
     },
 
     async deleteStudent(req,res){
-        const fields = req.body
-        if(Object.values(fields).includes('')){
-            return res.send('Aconteceu um erro, tente novamente')
-        }
-
         try {
-            const db = await Database
-            await deleteStudentMethod(db,{
-                id: fields.id,
-            })
-
-            return res.redirect('/DeleteUsers')
+            const fields = new ModelDeleteStudent(req.params);
+            await fields.delete();
+            req.flash('success', 'Seu aluno foi deletado com sucesso');
+            return res.redirect('/DeleteUsers');
         } catch (error) {
-            console.log(error)
-            return res.send('Ouvi um error no banco de dados')
+            console.log(error);
+            return res.send('Aconteceu um error no banco de dados')
         }
     },
     
     erroPage(req,res){
-        return res.sendFile(__dirname + '/views/ErrorPage.html')
+        return res.render('ErrorPage');
     }
 }
